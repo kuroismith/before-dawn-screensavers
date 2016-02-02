@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="__assets/mustache.min.js"></script>
+    <script src="__assets/jquery.min.js"></script>
+    <link rel="stylesheet" href="__assets/pure-min.css">
+    <link rel="stylesheet" href="__assets/grids-responsive-min.css"> 
+  </head>
+  <body>
+
+    <div id="layout" class="pure-g">
+      <div class="sidebar pure-u-1 pure-u-md-1-4">
+        <div class="header">
+          <nav class="nav">
+            <ul class="savers">
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+
+      <div class="content pure-u-1 pure-u-md-3-4">
+        <div>
+          <iframe width="800" height="600"></iframe>
+        </div>
+      </div>
+    </div>
+        
+    
+    <script>
+     $(document).ready(function() {
+       var populate = function(subdir) {
+         var url = subdir + "/saver.json";
+         $.getJSON(url, function(data) {
+           data.directory = subdir;
+           console.log(data);
+
+           if ( data.url && data.url.indexOf(":/") !== -1 ) {
+
+           }
+           else if ( data.previewUrl ) {
+             data.url = data.directory + "/" + data.previewUrl;
+           }
+           else {
+             data.url = data.directory + "/" + data.source;
+           }
+
+           var output = Mustache.render(template, data);
+
+           $("ul.savers").append(output);
+         });
+       };
+
+       // click handler
+       
+       var template = $('#template').html();
+       var list = ["10-print", "emoji", "emoji_fireplace", "run-url",
+                   "starfield", "zombocom"];
+
+       Mustache.parse(template);
+
+       for ( var i = 0; i < list.length; i++ ) {
+         var subdir = list[i];
+         populate(subdir);
+       }
+
+
+       $("body").on("click", "ul.savers a", function(e) {
+         var url = $(this).attr("href");
+         url = url + "?width=800&height=600";
+         console.log("hey");
+         e.preventDefault();
+
+         $("iframe").attr("src", url);
+       });
+     });
+    </script>
+    <script id="template" type="x-tmpl-mustache">
+     <li><a href="{{url}}">{{ name }}</a></li>
+    </script>
+  </body>
+</html>
