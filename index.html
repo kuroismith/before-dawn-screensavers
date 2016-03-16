@@ -40,6 +40,24 @@
     
     <script>
      $(document).ready(function() {
+       var template = $('#template').html();
+       Mustache.parse(template);
+
+       var getList = function() {
+         console.log("hello");
+         $.ajax({
+           dataType:"json",
+           url:"./savers.json",
+           success: function(list) {
+             console.log("hey!", list);
+             for ( var i = 0; i < list.length; i++ ) {
+               var subdir = list[i];
+               populate(subdir);
+             }
+           }
+         });
+       };
+
        var populate = function(subdir) {
          var url = subdir + "/saver.json";
          $.getJSON(url, function(data) {
@@ -63,27 +81,17 @@
        };
 
        // click handler
-       
-       var template = $('#template').html();
-       var list = ["10-print", "emoji", "emoji_fireplace", "run-url",
-                   "starfield", "zombocom"];
-
-       Mustache.parse(template);
-
-       for ( var i = 0; i < list.length; i++ ) {
-         var subdir = list[i];
-         populate(subdir);
-       }
-
 
        $("body").on("click", "ul.savers a", function(e) {
          var url = $(this).attr("href");
-         url = url + "?width=800&height=600";
-         console.log("hey");
+         url = url + "?width=800&height=600&screenshot=../assets/desktop2.png";
          e.preventDefault();
 
          $("iframe").attr("src", url);
        });
+
+
+       getList();
      });
     </script>
     <script id="template" type="x-tmpl-mustache">
