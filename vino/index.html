@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Emoji Screensaver!</title>
+    <style type="text/css">
+      body {margin:0; padding:0; cursor:none;}
+      canvas {display:block;}
+      canvas:focus {outline:0;}
+    </style>
+    <script>
+     window.urlParams = window.location.search.split(/[?&]/).slice(1).map(function(paramPair) {
+       return paramPair.split(/=(.+)?/).slice(0, 2);
+     }).reduce(function (obj, pairArray) {            
+       obj[pairArray[0]] = pairArray[1];
+       return obj;
+     }, {});
+    </script>
+    <script src="p5.js"></script>
+  </head>
+  <body>
+    <script src="vino.js"></script>
+  </body>
+</html>
