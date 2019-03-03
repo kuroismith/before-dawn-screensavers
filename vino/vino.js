@@ -54,7 +54,6 @@ class Ball {
   constructor() {
     this.x = random(width);
     this.y = random(height);
-    this.diameter = random(10, 50);
     this.xSpeed = random(-1.5, 1.5);
     this.ySpeed = random(-1.5, 1.5);
     this.xDirection = 0.7;
