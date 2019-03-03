@@ -54,6 +54,7 @@ class Ball {
   constructor() {
     this.x = random(width);
     this.y = random(height);
+    this.diameter = random(10, 50);
     this.xSpeed = random(-1.5, 1.5);
     this.ySpeed = random(-1.5, 1.5);
     this.xDirection = 0.7;
@@ -67,17 +68,17 @@ class Ball {
   }
 
   turn() {
-    if (this.x < 0) {
-      this.x = 0;
+    if (this.x < -100) {
+      this.x =  -100;
       this.xDirection = -this.xDirection;
-    } else if (this.y < 0) {
-      this.y = 0;
+    } else if (this.y <  -100) {
+      this.y =  -100;
       this.yDirection = -this.yDirection;
-    } else if (this.x > width - 20) {
-      this.x = width - 20;
+    } else if (this.x > width - 100) {
+      this.x = width - 100;
       this.xDirection = -this.xDirection;
-    } else if (this.y > height - 20) {
-      this.y = height - 20;
+    } else if (this.y > height - 100) {
+      this.y = height - 100;
       this.yDirection = -this.yDirection;
     }
   }
