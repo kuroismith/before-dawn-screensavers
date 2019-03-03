@@ -3,7 +3,8 @@ let balls = [];
 let sprites = [];
 let numSprites = 30;
 let minSprite = 1;
-let maxSprite = 11;
+let maxSprite = 13;
+let now = new Date();
 
 function setup() {
   if ( typeof(window.urlParams) !== "undefined" ) {
@@ -23,10 +24,17 @@ function setup() {
 
   createCanvas(displayWidth, displayHeight);
 
-  img = loadImage(decodeURIComponent(window.urlParams.screenshot));
+  img = loadImage(decodeURIComponent(window.urlParams.screenshot));   
+
   for ( let i = 0; i < numSprites; i++ ) {
     let index = int(random(minSprite, maxSprite));
-    var tmp = loadImage("data/" + index + ".png");
+    let tmp;
+    if ((now.getMonth() === 7 && now.getDate() === 12) || (now.getMonth() === 9 && now.getDate() === 10)) {
+      // happy birthday
+      tmp = loadImage("data/surprise/" + index + ".png"); 
+    } else {
+      tmp = loadImage("data/" + index + ".png");
+    }
     sprites.push(tmp);
     balls.push(new Ball());
   }
