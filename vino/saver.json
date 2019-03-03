@@ -1,0 +1,10 @@
+{
+  "name": "vino",
+  "source": "index.html",
+  "description": "Bottles flying through space.",
+  "aboutUrl": "",
+  "requirements": [
+    "none"
+  ],
+  "options": []
+}
