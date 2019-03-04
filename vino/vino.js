@@ -24,7 +24,7 @@ function setup() {
 
   createCanvas(displayWidth, displayHeight);
 
-  img = loadImage(decodeURIComponent(window.urlParams.screenshot));   
+  img = loadImage(unescape(decodeURIComponent(window.urlParams.screenshot)));
 
   for ( let i = 0; i < numSprites; i++ ) {
     let index = int(random(minSprite, maxSprite));
@@ -41,7 +41,7 @@ function setup() {
 }
 
 function draw() {
-  background(img);
+  image(img, 0, 0);
   for (let i = 0; i < balls.length; i++) {
     balls[i].move();
     balls[i].display();
@@ -54,7 +54,6 @@ class Ball {
   constructor() {
     this.x = random(width);
     this.y = random(height);
-    this.diameter = random(10, 50);
     this.xSpeed = random(-1.5, 1.5);
     this.ySpeed = random(-1.5, 1.5);
     this.xDirection = 0.7;
