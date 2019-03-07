@@ -5,6 +5,7 @@ let numSprites = 30;
 let minSprite = 1;
 let maxSprite = 13;
 let now = new Date();
+let fps = 30;
 
 function setup() {
   if ( typeof(window.urlParams) !== "undefined" ) {
@@ -23,6 +24,7 @@ function setup() {
   }
 
   createCanvas(displayWidth, displayHeight);
+  frameRate(fps);
 
   img = loadImage(unescape(decodeURIComponent(window.urlParams.screenshot)));
 
@@ -54,6 +56,7 @@ class Ball {
   constructor() {
     this.x = random(width);
     this.y = random(height);
+    this.diameter = 50;
     this.xSpeed = random(-1.5, 1.5);
     this.ySpeed = random(-1.5, 1.5);
     this.xDirection = 0.7;
@@ -67,17 +70,17 @@ class Ball {
   }
 
   turn() {
-    if (this.x < -100) {
-      this.x =  -100;
+    if (this.x < -this.diameter) {
+      this.x =  -this.diameter;
       this.xDirection = -this.xDirection;
-    } else if (this.y <  -100) {
-      this.y =  -100;
+    } else if (this.y <  -this.diameter) {
+      this.y = -this.diameter;
       this.yDirection = -this.yDirection;
-    } else if (this.x > width - 100) {
-      this.x = width - 100;
+    } else if (this.x > width - this.diameter) {
+      this.x = width - this.diameter;
       this.xDirection = -this.xDirection;
-    } else if (this.y > height - 100) {
-      this.y = height - 100;
+    } else if (this.y > height - this.diameter) {
+      this.y = height - this.diameter;
       this.yDirection = -this.yDirection;
     }
   }
