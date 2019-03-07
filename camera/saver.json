@@ -1,9 +1,0 @@
-{
-  "name": "Camera",
-  "description": "Displays a stylized version of what your webcamera sees",
-  "aboutUrl": "",
-  "author": "Colin Mitchell",
-  "source": "index.html",
-  "requirements": [],
-  "options": []
-}
