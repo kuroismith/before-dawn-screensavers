@@ -31,7 +31,7 @@ function setup() {
   for ( let i = 0; i < numSprites; i++ ) {
     let index = int(random(minSprite, maxSprite));
     let tmp;
-    if ((now.getMonth() === 7 && now.getDate() === 12) || (now.getMonth() === 9 && now.getDate() === 10)) {
+    if ((now.getMonth() === 7 && now.getDate() === 16) || (now.getMonth() === 9 && now.getDate() === 10)) {
       // happy birthday
       tmp = loadImage("data/surprise/" + index + ".png"); 
     } else {
